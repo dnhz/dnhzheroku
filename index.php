@@ -1,28 +1,23 @@
-<?php
+<?php 
+/*|---------------------------------------------
+  |     YDrive - Google Drive Video Proxy
+  |  ©2017-2020 Yotsubal - YotsubalRU PROJECT 
+  |---------------------------------------------
+  */
+  
+// Demo
 
-/**
- * ====================================================================================
- *                           Google Drive Proxy Player (c) CodySeller
- * ----------------------------------------------------------------------------------
- * @copyright This software is exclusively sold at codester.com. If you have downloaded this
- *  from another site or received it from someone else than me, then you are engaged
- *  in an illegal activity. You must delete this software immediately or buy a proper
- *  license from https://www.codester.com/codyseller?ref=codyseller.
- *
- *  Thank you for your cooperation and don't hesitate to contact me if anything :)
- * ====================================================================================
- *
- * @author CodySeller (http://codyseller.com)
- * @link http://codyseller.com
- * @license http://codyseller.com/license
- */
-
-
-if(!file_exists("includes/config.php")){
-  header("Location: install");
-  exit;
-}
-
-require_once(__DIR__.'/includes/config.php');
-
-$app->run();
+include("core.php");
+// Init
+$s = new YDrive();
+// get Resolution List
+//print_r($s->getResolution());
+// set new ID df
+$s->setID($_GET["id"] ?? "");
+// set Resolution
+$s->setResolution($_GET["m"]  ?? "");
+// download Link 
+$s->setDownload($_GET["alt"]  ?? "");
+// Start Stream
+$s->stream();
+?>
